@@ -1,0 +1,2 @@
+/root/android-ndk-r25c/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar qc ../../../lib/libgmock_main.a CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+/root/android-ndk-r25c/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib ../../../lib/libgmock_main.a
