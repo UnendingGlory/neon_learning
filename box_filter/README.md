@@ -31,39 +31,42 @@ CMAKE=/usr/bin/cmake
 
 
 ```
-[==========] Running 6 tests from 1 test suite.
+[==========] Running 8 tests from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 6 tests from netTest
+[----------] 8 tests from netTest
 [ RUN      ] netTest.org_boxfilter
-          [0] BoxFilfer Cost time: 1679.91ms
-          [1] BoxFilfer Cost time: 1669.2ms
-          [2] BoxFilfer Cost time: 1668.06ms
-          [3] BoxFilfer Cost time: 1669.61ms
-          [4] BoxFilfer Cost time: 1667.7ms
-          [5] BoxFilfer Cost time: 1667.84ms
-          [6] BoxFilfer Cost time: 1677.63ms
-          [7] BoxFilfer Cost time: 1670.87ms
-          [8] BoxFilfer Cost time: 1667.56ms
-          [9] BoxFilfer Cost time: 1671.46ms
+          [0] BoxFilfer Cost time: 127.634ms
+          [1] BoxFilfer Cost time: 127.109ms
+          [2] BoxFilfer Cost time: 127.33ms
+          [3] BoxFilfer Cost time: 127.236ms
+          [4] BoxFilfer Cost time: 127.55ms
+          [5] BoxFilfer Cost time: 132.697ms
+          [6] BoxFilfer Cost time: 137.154ms
+          [7] BoxFilfer Cost time: 135.628ms
+          [8] BoxFilfer Cost time: 136.236ms
+          [9] BoxFilfer Cost time: 137.684ms
 
-          BoxFilfer Average Cost time: 1670.99ms
+          BoxFilfer Average Cost time: 131.626ms
 ...
-[==========] 6 tests from 1 test suite ran. (26248 ms total)
-[  PASSED  ] 6 tests.
+[----------] Global test environment tear-down
+[==========] 8 tests from 1 test suite ran. (2876 ms total)
+[  PASSED  ] 8 tests.
 
 ```
 
 ## Comparison
 |name|Interpret|average speed|
 |-|-|-|
-|filter|naive||
-|fastFilter|row col split||
-|fastFilterV1|sliding window based on fastFilter||
-|fastFilterV2|rearrange loop to reduce cache miss based on V1||
-|fastFilterV2NeonIntrinsics|neon intrinsics to utilize SIMD||
-|fastFilterV2NeonAsm|neon assembly||
-|fastFilterV2NeonAsmV1|prefetch to avoid directly transfer between memory and register||
+|filter|naive|127.908ms|
+|fastFilter|row col split|26.3819ms|
+|fastFilterV1|sliding window based on fastFilter|10.0881ms|
+|fastFilterV2|rearrange loop to reduce cache miss based on V1|10.1909ms|
+|fastFilterV2NeonIntrinsics|neon intrinsics to utilize SIMD|10.1153ms|
+|fastFilterV2NeonAsm|neon assembly|9.9547ms|
+|fastFilterV2NeonAsmV1|prefetch to avoid directly transfer between memory and register| 9.7998ms|
 
 ## reference
 > https://zhuanlan.zhihu.com/p/170611395
 > https://zhuanlan.zhihu.com/p/64522357
+> https://developer.arm.com/documentation/ddi0602/2023-06/Base-Instructions?lang=en
+> https://developer.arm.com/documentation/102467/0200

@@ -522,7 +522,7 @@ void BoxFilter::fastFilterV2NeonAsm(float *input, int radius, int height, int wi
 #if __aarch64__ // armv8
     asm volatile(                    // volatile let compiler not do optimization for the assembly
       // Assembler Template
-      "0:                           \n"
+      "0:                           \n" // define an address 0
       "ld1  {v0.4s}, [%0], #16      \n" // _add, tmpAddPtr += 4
       "ld1  {v1.4s}, [%1], #16      \n" // _sub, tmpSubPtr += 4
       "ld1  {v2.4s}, [%2]           \n" // _colSum
@@ -531,7 +531,7 @@ void BoxFilter::fastFilterV2NeonAsm(float *input, int radius, int height, int wi
       "st1  {v4.4s}, [%3], #16      \n" // store to the tmpOutPtr memory address and tmpOutPtr += 4
       "st1  {v4.4s}, [%2], #16      \n" // tmpColSumPtr += 4
       "subs %4, %4, #1              \n" // nn--
-      "bne  0b                      \n" // stop when nn = 0
+      "bne  0b                      \n" // stop when nn = 0, else jump to address 0
       // OutputOperands
       : "=r"(tmpAddPtr),
       "=r"(tmpSubPtr),
